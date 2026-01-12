@@ -16,7 +16,7 @@ state_e state_reg, state_next; // variables of type state_e of the package
 
 //Signal declarations
 logic [19:0] t0_reg, t0_next, t1_reg, t1_next; // t0 _reg and t1_reg are the two last fibonacci numbers, t0 next and t1_next are the next values
-logic [4:0] n_reg, n_next; // actual value and next value of n
+logic [4:0] n_reg, n_next; // actual value and next value of n, it is 5 bits because the max value of i_i is 30 (2^5 = 32)
 
 
 // First always block: state register
@@ -28,7 +28,7 @@ logic [4:0] n_reg, n_next; // actual value and next value of n
          n_reg  <= 0;
  end else begin
          state_reg <= state_next;
-         t0_reg <= t0_next;
+         t0_reg <= t0_next; // t0_reg take the value of t0_next which is calculated 
          t1_reg <= t1_next;
          n_reg  <= n_next;
  end
@@ -61,7 +61,7 @@ case(state_reg)
             state_next = DONE;
         end else if(n_reg == 1) begin
             state_next = DONE;
-        end else begin
+        end else if(n_reg > 1) begin
             t1_next = t1_reg + t0_reg;
             t0_next = t1_reg;
             n_next = n_reg -1;

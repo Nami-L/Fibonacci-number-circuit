@@ -34,8 +34,8 @@ always #(CLK_PERIOD/2) clk_i = ~clk_i;
 
  initial begin
          $display ("=== Iniciando simulacion ===");
-         $monitor("t=%0t  clk=%b  rst=%b i_i=%0d start=%b done_tick_o=%b f_o=%0d estado =%s",
-          $time, clk_i, rst_i, i_i, start_i, done_tick_o, f_o, dut.state_reg);
+         $monitor("t=%0t  clk=%b  rst=%b i_i=%0d start=%b done_tick_o=%b n_reg=%0d f_o=%0d estado =%s",
+          $time, clk_i, rst_i, i_i, start_i, done_tick_o, dut.n_reg, f_o, dut.state_reg);
  end
 
 
@@ -82,7 +82,7 @@ always #(CLK_PERIOD/2) clk_i = ~clk_i;
     // Caso 3: F(7)
     // -------------------------
     @(posedge clk_i);
-    i_i = 7;
+    i_i = 5; 
     start_i = 1;
 
     @(posedge clk_i);
